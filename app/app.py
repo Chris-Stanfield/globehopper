@@ -3,6 +3,7 @@
 
 from flask import Flask, request, jsonify
 import country
+import cities
 
 
 #Using Flask framework
@@ -14,11 +15,26 @@ app = Flask(__name__)
 def getallcountries():
     return country.getcountries()
 
+@app.get("/cities")
+def getallcities():
+    return cities.getcities()
+
 #Create - POST API 
 @app.post("/countries")
 def createcountry():
     data = request.json
     return country.createcountry(data)
+
+@app.post("/cities")
+def createcity():
+    data = request.json
+    return cities.createcity(data)
+
+#Delete - DELETE API 
+@app.delete("/countries/<int:country_id>")
+def deletecountry(country_id):
+    return country.deletecountry(country_id)
+
 
 
 
