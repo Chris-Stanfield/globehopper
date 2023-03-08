@@ -22,3 +22,7 @@ def getcities():
 def createcity(data):
     services.createcity(data)
     return jsonify({"message": "Data inserted successfully"})
+
+def deletecity(city_id):
+    services.deletecity(city_id)
+    return jsonify({"message": "City successfully deleted"})

@@ -35,6 +35,10 @@ def createcity():
 def deletecountry(country_id):
     return country.deletecountry(country_id)
 
+@app.delete("/cities/<int:city_id>")
+def deletecity(city_id):
+    return cities.deletecity(city_id)
+
 
 
 
