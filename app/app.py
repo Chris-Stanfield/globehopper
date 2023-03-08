@@ -3,20 +3,23 @@
 
 from flask import Flask, request, jsonify
 import country
+from flask_wtf.csrf import CSRFProtect
 
 #Using Flask framework
 app = Flask(__name__)
+csrf = CSRFProtect()
+csrf.init_app(app)
 
 #Read - GET API 
 @app.get("/countries")
-def getAllCountries():
-    return country.getCountries()
+def getallcountries():
+    return country.getcountries()
 
 #Create - POST API 
 @app.post("/countries")
-def createCountry():
+def createcountry():
     data = request.json
-    return country.createCountry(data)
+    return country.createcountry(data)
 
 
 
