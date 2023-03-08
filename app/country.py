@@ -33,8 +33,8 @@ def updatecountryco(data):
     return jsonify({"message": "Country successfully updated"})
 
 
-def getcountrybyconco(country_name):
-    results = services.getcountrybyconservice(country_name)
+def getcountrybyconco(continent_name):
+    results = services.getcountrybyconservice(continent_name)
 
     data = []
     for row in results:
@@ -48,5 +48,19 @@ def getcountrybyconco(country_name):
     return jsonify(data)
 
 
+def getcapitalbycountryco(country_name, capital):
+    results = services.getcapitalbycountryservice(country_name, capital)
 
-    return jsonify({"message": "Country successfully deleted"})
+    data = []
+    for row in results:
+        data.append({
+            "CityId" : row[0],
+            "Name": row[1], 
+            "CountryId" : row[2], 
+            "Capital" : row[3],
+            "FirstLandmark" : row[4],
+            "SecondLandmark" : row[5],
+            "ThirdLandmark" : row[6]
+        })
+
+    return jsonify(data)

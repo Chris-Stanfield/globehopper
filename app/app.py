@@ -16,9 +16,14 @@ def getallcountriesapp():
     return country.getcountriesco()
 
 #Read - GET API 
-@app.get("/countries/<string:country_name>")
-def getcountriesbyconapp(country_name):
-    return country.getcountrybyconco(country_name)
+@app.get("/countries/<string:continent_name>")
+def getcountriesbyconapp(continent_name):
+    return country.getcountrybyconco(continent_name)
+
+#Read - GET API 
+@app.get("/countries/<string:country_name>/<int:capital>")
+def getcapitalbycountryapp(country_name, capital):
+    return country.getcapitalbycountryco(country_name, capital)
 
 #Read - GET API 
 @app.get("/cities")

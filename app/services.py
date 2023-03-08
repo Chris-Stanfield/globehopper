@@ -22,7 +22,7 @@ def allcountriesservice():
     return results
 
 
-def getcountrybyconservice(country_name):
+def getcountrybyconservice(continent_name):
 
     #Open Connection
     conn.myconn._open_connection()
@@ -30,7 +30,7 @@ def getcountrybyconservice(country_name):
 
     #Execute the SQL
     mysql = "SELECT * FROM Country WHERE Continent = '%s'"
-    value = country_name
+    value = continent_name
     mycursor.execute(mysql % value)
     results = mycursor.fetchall()
 
@@ -38,6 +38,25 @@ def getcountrybyconservice(country_name):
     mycursor.close()
     conn.myconn.close()
     return results
+
+
+def getcapitalbycountryservice(country_name, capital):
+
+    #Open Connection
+    conn.myconn._open_connection()
+    mycursor = conn.myconn.cursor()
+
+    #Execute the SQL
+    mysql = "SELECT * FROM City WHERE Countryid = (SELECT countryid FROM Country WHERE `Name` = %s) AND Capital = %s"
+    values = (country_name, capital)
+    mycursor.execute(mysql, values)
+    results = mycursor.fetchall()
+
+    #Close Connection
+    mycursor.close()
+    conn.myconn.close()
+    return results
+
 
 
 def allcitiesservice():
