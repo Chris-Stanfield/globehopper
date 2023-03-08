@@ -31,3 +31,22 @@ def deletecountryco(country_id):
 def updatecountryco(data):
     services.updatecountryservice(data)
     return jsonify({"message": "Country successfully updated"})
+
+
+def getcountrybyconco(country_name):
+    results = services.getcountrybyconservice(country_name)
+
+    data = []
+    for row in results:
+        data.append({
+            "CountryId" : row[0],
+            "Name": row[1], 
+            "Population" : row[2], 
+            "Continent" : row[3]
+        })
+
+    return jsonify(data)
+
+
+
+    return jsonify({"message": "Country successfully deleted"})

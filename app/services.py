@@ -22,6 +22,24 @@ def allcountriesservice():
     return results
 
 
+def getcountrybyconservice(country_name):
+
+    #Open Connection
+    conn.myconn._open_connection()
+    mycursor = conn.myconn.cursor()
+
+    #Execute the SQL
+    mysql = "SELECT * FROM Country WHERE Continent = '%s'"
+    value = country_name
+    mycursor.execute(mysql % value)
+    results = mycursor.fetchall()
+
+    #Close Connection
+    mycursor.close()
+    conn.myconn.close()
+    return results
+
+
 def allcitiesservice():
 
     #Open Connection
