@@ -12,32 +12,48 @@ app = Flask(__name__)
 
 #Read - GET API 
 @app.get("/countries")
-def getallcountries():
-    return country.getcountries()
+def getallcountriesapp():
+    return country.getcountriesco()
 
+#Read - GET API 
 @app.get("/cities")
-def getallcities():
-    return cities.getcities()
+def getallcitiesapp():
+    return cities.getcitiesci()
 
 #Create - POST API 
 @app.post("/countries")
-def createcountry():
+def createcountryapp():
     data = request.json
-    return country.createcountry(data)
+    return country.createcountryco(data)
 
+#Create - POST API
 @app.post("/cities")
-def createcity():
+def createcityapp():
     data = request.json
-    return cities.createcity(data)
+    return cities.createcityci(data)
 
 #Delete - DELETE API 
 @app.delete("/countries/<int:country_id>")
-def deletecountry(country_id):
-    return country.deletecountry(country_id)
+def deletecountryapp(country_id):
+    return country.deletecountryco(country_id)
 
+#Delete - DELETE API 
 @app.delete("/cities/<int:city_id>")
-def deletecity(city_id):
-    return cities.deletecity(city_id)
+def deletecityapp(city_id):
+    return cities.deletecityci(city_id)
+
+
+#Update - PUT API 
+@app.put("/countries")
+def updatecountryapp():
+    data = request.json
+    return country.updatecountryco(data)
+
+#Update - PUT API 
+@app.put("/cities")
+def updatecityapp():
+    data = request.json
+    return cities.updatecityci(data)
 
 
 

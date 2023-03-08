@@ -3,8 +3,8 @@
 from flask import Flask, request, jsonify
 import services
 
-def getcountries():
-    results = services.allcountries()
+def getcountriesco():
+    results = services.allcountriesservice()
 
     data = []
     for row in results:
@@ -18,11 +18,16 @@ def getcountries():
     return jsonify(data)
 
 
-def createcountry(data):
-    services.createcountry(data)
+def createcountryco(data):
+    services.createcountryservice(data)
     return jsonify({"message": "Data inserted successfully"})
 
 
-def deletecountry(country_id):
-    services.deletecountry(country_id)
+def deletecountryco(country_id):
+    services.deletecountryservice(country_id)
     return jsonify({"message": "Country successfully deleted"})
+
+
+def updatecountryco(data):
+    services.updatecountryservice(data)
+    return jsonify({"message": "Country successfully updated"})

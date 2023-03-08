@@ -6,7 +6,7 @@ import conn
 
 
 #Gets all records from Country table using SQL
-def allcountries():
+def allcountriesservice():
 
     #Open Connection
     conn.myconn._open_connection()
@@ -22,7 +22,7 @@ def allcountries():
     return results
 
 
-def allcities():
+def allcitiesservice():
 
     #Open Connection
     conn.myconn._open_connection()
@@ -38,7 +38,7 @@ def allcities():
     return results
 
 
-def createcountry(data):
+def createcountryservice(data):
      #Open Connection
     conn.myconn._open_connection()
     mycursor = conn.myconn.cursor()
@@ -58,7 +58,56 @@ def createcountry(data):
     mycursor.close()
     conn.myconn.close()
 
-def createcity(data):
+
+def updatecountryservice(data):
+    #Open Connection
+    conn.myconn._open_connection()
+    mycursor = conn.myconn.cursor()
+
+    countryid = data["CountryId"]
+    name = data["Name"]
+    population = data["Population"]
+    continent = data["Continent"]
+
+    #Execute the SQL
+    mysql = "UPDATE Country SET Name = %s, Population = %s, Continent = %s WHERE CountryId = %s"
+    values = (name, population, continent, countryid)
+    mycursor.execute(mysql, values)
+
+
+    #Close Connection
+    mycursor.close()
+    conn.myconn.close()
+
+
+def updatecityservice(data):
+    #Open Connection
+    conn.myconn._open_connection()
+    mycursor = conn.myconn.cursor()
+
+    captial = data["Capital"]
+    cityid = data["CityId"]
+    countryid = data["CountryId"]
+    firstlandmark = data["FirstLandmark"]
+    name = data["Name"]
+    secondlandmark = data["SecondLandmark"]
+    thirdlandmark = data["ThirdLandmark"]
+
+    #Execute the SQL
+    mysql = "UPDATE City SET Name = %s, CountryId = %s, Capital = %s, FirstLandmark = %s, SecondLandmark = %s, ThirdLandmark = %s  WHERE CityId = %s"
+    values = (name, countryid, captial, firstlandmark, secondlandmark, thirdlandmark, cityid)
+    mycursor.execute(mysql, values)
+
+
+    #Close Connection
+    mycursor.close()
+    conn.myconn.close()
+
+
+
+
+
+def createcityservice(data):
      #Open Connection
     conn.myconn._open_connection()
     mycursor = conn.myconn.cursor()
@@ -83,7 +132,7 @@ def createcity(data):
     conn.myconn.close()
 
 
-def deletecountry(country_id):
+def deletecountryservice(country_id):
      #Open Connection
     conn.myconn._open_connection()
     mycursor = conn.myconn.cursor()
@@ -100,7 +149,7 @@ def deletecountry(country_id):
     conn.myconn.close()
 
 
-def deletecity(city_id):
+def deletecityservice(city_id):
      #Open Connection
     conn.myconn._open_connection()
     mycursor = conn.myconn.cursor()

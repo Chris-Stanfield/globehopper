@@ -1,8 +1,8 @@
 from flask import Flask, request, jsonify
 import services
 
-def getcities():
-    results = services.allcities()
+def getcitiesci():
+    results = services.allcitiesservice()
 
     data = []
     for row in results:
@@ -19,10 +19,14 @@ def getcities():
     return jsonify(data)
 
 
-def createcity(data):
-    services.createcity(data)
+def createcityci(data):
+    services.createcityservice(data)
     return jsonify({"message": "Data inserted successfully"})
 
-def deletecity(city_id):
-    services.deletecity(city_id)
+def deletecityci(city_id):
+    services.deletecityservice(city_id)
     return jsonify({"message": "City successfully deleted"})
+
+def updatecityci(data):
+    services.updatecityservice(data)
+    return jsonify({"message": "City successfully updated"})
